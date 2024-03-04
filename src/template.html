@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+</head>
+<body>
+    <header >
+        <div class="logo">Weather App</div>
+        <div>
+         <form>
+            <label for="location" aria-label="location"></label>
+            <input type="text" name="location" id="location" data-city-input>
+            <button class="submit-btn" data-submit-location>submit</button>
+        </form> 
+    </div>
+    </header>
+    <main>
+        <section class="cards">
+        <div class="card">
+            <h1>Addis,Ethiopia</h1>
+            <h2>20</h2>
+           <div class="rainy-day">
+            <div class="sky"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox=" 0 0 640 512" width = "100px" height="100px" class="sloud-svg" stroke="black" fill = "white">
+                       <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
+               </svg>
+            </div>
+     <div class="rain"> 
+        <span class="rain-drops"  data-drops></span>   
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span>   
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span>
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+        <span class="rain-drops"  data-drops></span> 
+      
+     </div> 
+    </div>
+    <div class="suggest-info">
+        <h3>get umbrella</h3>
+    </div>
+    <div class="weather-info">
+<div></div>
+<div class="wind">
+            <div class="humidity" data-humidity>humidity:20</div> 
+            <div class="wind" data-wind-speed>wind-speed(khr):20k/hr</div> 
+            <div class="pressure" data-direction>wind-direction:se</div> 
+            <div class="pressure" data-pressure>pressure(mb):1025</div> 
+        </div>
+    </div>
+    </section>
+   <section class="slider">
+    <div class="small-cards">
+        <h1 class="day-name">today</h1>
+        <div><i class="fa-solid fa-cloud"></i></div>
+        <h2 class="temprature">20c</h2>
+        <h3 class="day-conditon">partly cloudy</h3>
+    </div>
+   </section> 
+    </main>
+</body>
+</html>
