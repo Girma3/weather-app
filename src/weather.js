@@ -1,21 +1,23 @@
 // get wetaher data
-
+import { formatDate } from 'date-fns'
 async function getforcast (city) {
   const forcast = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=436674fa18c0444fba4113519240203&q=${city}&days=3`, { mode: 'cors' })
   if (forcast.status === 400) {
     throw new Error("can't fetch the data")
   }
   const data = await forcast.json()
+  console.log(data)
   return data
 }
 
 function bigCard (obj) {
+  const code = obj.current.condition.code
   const card = `
   <div class="card">
       <div class="header">  
             <h1 class="skeleton t skeleton-text">${obj.location.name}, ${obj.location.country}</h1>
             <h2 class="skeleton temprature skeleton-text">${obj.current.feelslike_c}&#8451</h2>
-           <div class="rainy-day">${chooseicon(obj)} </div>
+           <div class="rainy-day">${chooseicon(code)}</div>
         <div class="suggest-info">
           <h3 class="skeleton skeleton-text">${obj.current.condition.text}</h3>
         </div>
@@ -24,10 +26,10 @@ function bigCard (obj) {
 
 
 <div class="wind">
-            <div class="humidity skeleton skeleton-text" data-humidity>humidity ${obj.current.humidity}</div> 
+            <div class="humidity skeleton skeleton-text" data-humidity>humidity ${obj.current.humidity}%</div> 
             <div class="wind skeleton skeleton-text" data-wind-speed>wind speed ${obj.current.wind_kph}k/hr</div> 
             <div class="pressure skeleton skeleton-text" data-direction>wind-directio ${obj.current.wind_dir}</div> 
-            <div class="pressure skeleton skeleton-text" data-pressure>pressure ${obj.current.pressure_mb}</div> 
+            <div class="pressure skeleton skeleton-text" data-pressure>pressure ${obj.current.pressure_mb}mb</div> 
         </div>
     </div>
   `
@@ -38,15 +40,12 @@ function bigCard (obj) {
 // }))
 // console.log(getforcast('3')
 
-function chooseicon (obj) {
-  console.log(obj.current.condition.code)
-  const code = obj.current.condition.code
+function chooseicon (code) {
+  console.log(code)
   let final
   // thunder and cloud rain
-  if (code === 1273 || code === 1276 || code === 1279 || code === 1282) {
-    console.log('whyyyyy')
-    console.log(obj.current.condition.code)
-    console.log((obj.current.condition.code) === 1273 || (obj.current.condition.code === 1276))
+  if (code === 1273 || code === 1276 || code === 1279 || code === 1282 || code === 1273 ||
+    code === 1276) {
     final = `
        <div class="sky header__img skeleton">
        <svg xmlns="http://www.w3.org/2000/svg"
@@ -148,14 +147,14 @@ function chooseicon (obj) {
   // sunny
   else if (code === 1000) {
     final = `
-      <div class="sky header__img skeleton">
+      <div class="sky header__img skeleton sunny-day">
       <svg xmlns="http://www.w3.org/2000/svg"
           viewBox=" 0 0 640 512" width = "100px" height="100px" class="sloud-svg" stroke="black" fill = "white">
           <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
         </svg>
+        <div class="sun sunny"></div> 
       </div>
-      <div class="rain skeleton"> 
-        <div class="sun"></div> `
+     `
   }
   // partly cloudy
   else if (code === 1003) {
@@ -257,4 +256,25 @@ function chooseicon (obj) {
   }
   return final
 }
-export { getforcast, bigCard }
+function slidercard (obj, arr) {
+  const divHolder = document.createElement('div')
+
+  divHolder.classList.add('card-holder')
+
+  for (let i = 0; i < arr.length; i++) {
+    const code = obj.forecast.forecastday[i].day.condition.code
+
+    const div = document.createElement('div')
+    const smallCard = `<div class="small-cards ">
+    <h1 class="day-name">${formatDate(new Date(obj.forecast.forecastday[i].date), 'EEEE')}</h1>
+    <div>${chooseicon(code)}</div>
+   <h2 class="temprature">${obj.forecast.forecastday[i].day.avgtemp_c}&deg;C</h2>
+    <h3 class="day-conditon">${obj.forecast.forecastday[i].day.condition.text}</h3>
+  </div>`
+    div.innerHTML = smallCard
+    divHolder.appendChild(div)
+  }
+
+  return divHolder
+}
+export { getforcast, bigCard, slidercard }
