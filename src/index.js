@@ -1,29 +1,41 @@
 import './style.css'
-import { bigCard, getforcast, slidercard } from './weather.js'
+import { bigCard, focusStyle, getforcast, slidercard, validate, changeTemprature } from './weather.js'
 const input = document.querySelector('[data-city-input]')
 const submitBtn = document.querySelector('[data-submit-location]')
 const sliderCard = document.querySelector('[data-forecast')
 const cardHolder = document.querySelector('[data-cards')
+const errMsg = document.querySelector('[data-err-msg]')
+let shallow
 
 submitBtn.addEventListener('click', (e) => {
   e.preventDefault()
-  const cityName = input.value
+  let cityName = input.value
 
-  if (cityName === '') return
-  const data = getforcast(cityName)
-  data.then(response => {
-    console.log(1)
-    cardHolder.innerHTML = bigCard(response)
+  if (validate(cityName, input, errMsg) === false) {
+    console.log('noppp')
+  } else if (validate(cityName, input, errMsg)) {
+    const data = getforcast(cityName)
 
-    console.log(2)
+    data.then(response => {
+      cardHolder.innerHTML = bigCard(response)
+      sliderCard.textContent = ''
+      sliderCard.appendChild(slidercard(response, response.forecast.forecastday))
+      rain()
+      shallow = data
 
-    sliderCard.appendChild(slidercard(response, response.forecast.forecastday))
-    rain()
-    console.log(3)
-  })
-    .catch(err => {
-      console.log(err)
+      cityName = ''
+      input.value = ''
+      errMsg.textContent = ''
     })
+      .catch(err => {
+        errMsg.textContent = "can't find data,try another city"
+        console.log(err)
+      })
+  }
+})
+input.addEventListener('focus', () => {
+  focusStyle(input, errMsg)
+  console.log(shallow)
 })
 function rain () {
   const drops = document.querySelectorAll('[data-drops]')
@@ -37,3 +49,19 @@ function rain () {
     drops[i].style.animationDuration = `${random()}s`
   }
 }
+const changeUnit = document.querySelector('[data-checkbox]')
+changeUnit.addEventListener('click', () => {
+  const tempratures = document.querySelectorAll('.temprature')
+  const firstTemprature = document.querySelector('.first-temprature')
+  const temprature = [...tempratures]
+
+  if (changeUnit.checked === true) {
+    shallow.then(response => {
+      changeTemprature(temprature, firstTemprature, true, response)
+    })
+  } else if (changeUnit.checked === false) {
+    shallow.then(response => {
+      changeTemprature(temprature, firstTemprature, false, response)
+    })
+  }
+})
