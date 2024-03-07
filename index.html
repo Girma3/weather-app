@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+<link rel="icon" href="favicon-32x32.png"><script defer src="main.bundle.js"></script></head>
+<body>
+    <header >
+        <div class="logo">Weather App</div>
+        <div>
+         <form>
+            <label for="location" aria-label="location"></label>
+            <p class="error-msg" data-err-msg></p>
+            <input type="text" name="location" id="location" data-city-input placeholder="City Name" required>
+            <button class="submit-btn" data-submit-location><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form> 
+    </div>
+    <div class="toggle-holder">
+        <div >°C</div>
+        <input type="checkbox" name="change-unit" id="change-unit" class="checkbox" data-checkbox >
+        <label for="change-unit" class="toggle"> </label>
+        <div>°F</div>
+    </div>
+    </header>
+    <main>
+        <section class="cards" data-cards></section>
+        <section class="forcast-cards">
+            <h1 class="forcast-title">Forecast</h1>
+            <div data-forecast></div>
+        </section> 
+        <div class="loader-page" data-loader-page>
+            <section class="cards loader-card" data-cards >
+              <div class="card skeleton">
+                  <div class="header">  
+                      <h1 class="city skeleton-text"></h1>
+                      <h2 class=" first-temprature "></h2>
+                     <div class="rainy-day  skeleton">waiting city name</div>
+                  <div class="suggest-info">
+                    <h3 class="skeleton-text"></h3>
+                  </div>
+              </div>
+              <div class="weather-current">
+                <div class="humidity skeleton-text" data-humidity=""></div> 
+                <div class="wind skeleton-text" data-wind-speed=""></div> 
+                <div class="wind-diirection skeleton-text" data-direction=""></div> 
+                <div class="pressure skeleton-text" data-pressure=""></div> 
+            </div>
+        </div>
+      </section>
+       <section class="forcast-cards">
+         <div data-forecast="">
+          <div class="card-holder">
+            <div class="small-cards skeleton"></div>  
+            <div class="small-cards skeleton"></div> 
+            <div class="small-cards skeleton"></div> 
+          </section> 
+        </div>
+    </main>
+</body>
+</html>
