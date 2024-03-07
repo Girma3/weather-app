@@ -31,7 +31,7 @@
 body {
   min-height: 100vh;
   width: 100vw;
-  background-color: #171313;
+  background-color: #000000;
   font-family: "Roboto Mono";
   font-size: 1rem;
 }
@@ -271,6 +271,10 @@ input:focus {
   justify-content: space-between;
   gap: 2rem;
 }
+.forcast-title {
+  color: white;
+  font-family: "Roboto Mono";
+}
 
 .small-cards {
   --font-size: 1rem;
@@ -281,7 +285,7 @@ input:focus {
   justify-content: space-between;
   border-radius: 0.5rem;
   width: 220px;
-  height: 230px;
+  height: 270px;
   padding: 1rem;
   margin: 0.4rem;
   background-color: #456a78;
@@ -385,7 +389,7 @@ input:focus {
     background-color: hsl(200, 20%, 80%);
   }
   100% {
-    background-color: hsl(200, 20%, 95%);
+    background-color: hsl(204, 38%, 59%);
   }
 }
 .skeleton-text {
@@ -393,4 +397,11 @@ input:focus {
   height: 1.2rem;
   margin-bottom: 0.5rem;
   border-radius: 0.25rem;
+}
+.loader-page {
+  position: absolute;
+  top: 19%;
+}
+.loader-card {
+  width: 80vw;
 }
