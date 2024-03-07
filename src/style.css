@@ -10,7 +10,7 @@
 /* roboto-mono-regular - latin */
 @font-face {
   font-display: swap;
-  font-family: "Roboto Mono";
+  font-family: "Roboto Mono"; 
   font-style: normal;
   font-weight: 400;
   src: url("./assets/fonts/roboto-mono-v23-latin-regular.woff2") format("woff2");
