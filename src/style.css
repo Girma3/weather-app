@@ -1,4 +1,28 @@
 @import url(../node_modules/@fortawesome/fontawesome-free/css/all.css);
+/* faster-one-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Faster One";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/faster-one-v19-latin-regular.woff2") format("woff2");
+}
+/* roboto-mono-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/roboto-mono-v23-latin-regular.woff2") format("woff2");
+}
+/* arvo-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Arvo";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/arvo-v22-latin-regular.woff2") format("woff2");
+}
 * {
   margin: 0;
   padding: 0;
@@ -7,14 +31,20 @@
 body {
   min-height: 100vh;
   width: 100vw;
-  background-color: rgb(255, 255, 255);
+  background-color: #171313;
+  font-family: "Roboto Mono";
+  font-size: 1rem;
 }
 header {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  background-color: rgb(86, 110, 243);
-  padding: 1rem;
+  background-color: #f3f4f4;
+  padding: 1.3rem;
+  box-shadow: -3px 5px 10px rgb(0 0 0);
+  margin-bottom: 0.5rem;
+  font-family: "Faster One";
+  position: relative;
 }
 main {
   display: flex;
@@ -26,28 +56,102 @@ main {
 footer {
   padding: 1rem;
   text-align: center;
-  background-color: rgb(121, 109, 5);
+  background-color: rgb(240, 223, 65);
 }
+.logo {
+  font-size: 2rem;
+}
+input {
+  font-family: "Times New Roman", Times, serif;
+  padding: 0.5rem;
+  border: 2px green solid;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 1rem;
+}
+.submit-btn {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: inherit;
+}
+.submit-btn:hover > .fa-magnifying-glass {
+  color: rgb(17, 0, 255);
+}
+
 .cards {
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 100%;
   height: fit-content;
-  border: 3px solid red;
-
-  background-color: rgb(99, 99, 183);
+  padding: 0.5rem;
+  border: 2px solid rgb(85, 45, 45);
+  background-color: #8fe0ff;
 }
+.city,
+.day-name {
+  font-family: "Arvo";
+}
+.weather-current {
+  font-family: "Roboto Mono";
+  font-size: 1.5rem;
+}
+/* form style */
+input {
+  font-family: "Roboto Mono";
+  padding: 0.5rem;
+  border: 2px green solid;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 1rem;
+}
+input:focus {
+  border: 3px rgb(35, 255, 1) solid;
+}
+.submit-btn {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+.submit-btn:hover > .fa-magnifying-glass {
+  color: rgb(17, 0, 255);
+}
+.location-dot {
+  position: relative;
+  right: 2rem;
+}
+.valid {
+  border: 2px green solid;
+}
+.invalid {
+  border: 1px red solid;
+}
+.error-msg {
+  color: orangered;
+  font-family: "Roboto Mono";
+}
+
 .card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.forecat-h1 {
+  color: white;
 }
 /* weather icon holder */
 .rainy-day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 175px;
-  background-color: black;
+  background-color: #456a78;
+  border-radius: 1rem;
 }
 /* rain style */
 .rain {
@@ -92,7 +196,7 @@ footer {
     transform: translateY(70px);
   }
   100% {
-    transform: translateY(100px) scale(0);
+    transform: translateY(80px) scale(0);
   }
 }
 .sun {
@@ -111,7 +215,7 @@ footer {
 }
 .second-cloud {
   position: absolute;
-  left: 33%;
+  left: 42%;
   z-index: 1;
   fill: rgb(139, 141, 94);
 }
@@ -135,6 +239,14 @@ footer {
   left: 25%;
   z-index: 1;
 }
+/* sunny day, sun style cahnged */
+.sunny {
+  position: relative;
+  bottom: 4.2rem;
+}
+.sunny-day {
+  height: 90px;
+}
 /* move back and forth for the sun and cloud style */
 @keyframes sun {
   0% {
@@ -153,33 +265,30 @@ footer {
     left: 1rem;
   }
 }
-.forcast-choice {
+
+.card-holder {
   display: flex;
+  justify-content: space-between;
   gap: 2rem;
 }
-.slider {
-  position: relative;
-  background-color: lightcoral;
-  min-width: 300px;
-  padding: 0.5rem;
-}
+
 .small-cards {
   --font-size: 1rem;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-
+  justify-content: space-between;
   border-radius: 0.5rem;
-  width: max-content;
-  height: fit-content;
+  width: 220px;
+  height: 230px;
   padding: 1rem;
-  background-color: hwb(0 24% 76%);
+  margin: 0.4rem;
+  background-color: #456a78;
 }
 .small-cards::after {
   content: "";
-  background: linear-gradient(transparent, mediumslateblue, transparent);
+  background: linear-gradient(transparent, rgb(255, 4, 4), transparent);
   width: 2px;
   position: absolute;
   top: 60%;
@@ -198,40 +307,17 @@ footer {
 .temprature,
 .day-conditon {
   font-size: var(--font-size);
+  text-shadow: 1px 1px #181a2b;
+  color: rgb(255, 224, 224);
 }
-.slider-btns {
-  position: relative;
-  bottom: 5rem;
+.temprature,
+.suggest-info {
+  text-align: center;
 }
-.next-btn,
-.prev-btn {
-  position: absolute;
-}
-.next-btn {
-  right: -1rem;
-}
-.prev-btn {
-  left: -1rem;
-}
-/* loader */
-/* .skeleton {
-  animation: skeleton-loading 1s linear infinite alternate;
+.temprature {
+  margin-top: 2.5rem;
 }
 
-@keyframes skeleton-loading {
-  0% {
-    background-color: hsl(200, 20%, 80%);
-  }
-  100% {
-    background-color: hsl(200, 20%, 95%);
-  }
-}
-.skeleton-text {
-  width: 100%;
-  height: 1.2rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.25rem;
-} */
 .bolt {
   position: relative;
   bottom: 2rem;
@@ -252,4 +338,59 @@ footer {
   100% {
     color: rgb(85, 75, 75);
   }
+}
+/* toggle btn to change temprature unit */
+.toggle-holder {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+}
+.toggle {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  background-color: hsl(213, 96%, 18%);
+  border: none;
+  border-radius: 20px;
+  transition: all 0.5s;
+}
+.toggle::after {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  top: 5px;
+  left: 1px;
+  background-color: hsl(0, 0%, 100%);
+}
+.checkbox:checked + .toggle::after {
+  left: 25px;
+}
+.checkbox {
+  display: none;
+}
+/* loader */
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+.skeleton-text {
+  width: 100%;
+  height: 1.2rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
 }
