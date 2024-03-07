@@ -1,12 +1,12 @@
 // get wetaher data
 import { formatDate } from 'date-fns'
+// function to fetch weather data from weatherapi.com and  return promise
 async function getforcast (city) {
   const forcast = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=436674fa18c0444fba4113519240203&q=${city}&days=3`, { mode: 'cors' })
   if (forcast.status === 400) {
     throw new Error("can't fetch the data")
   }
   const data = await forcast.json()
-  console.log(data)
   return data
 }
 // function that accept object and fill value to show in dom
@@ -43,7 +43,7 @@ function chooseicon (code) {
   if (code === 1273 || code === 1276 || code === 1279 || code === 1282 || code === 1273 ||
     code === 1276) {
     final = `
-       <div class="sky header">
+       <div class="sky">
        <svg xmlns="http://www.w3.org/2000/svg"
              viewBox=" 0 0 640 512" width = "100px" height="100px" class="sloud-svg" stroke="black" fill = "white">
              <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
@@ -77,13 +77,13 @@ function chooseicon (code) {
       code === 1252 || code === 1249 || code === 1237 || code === 1225 ||
       code === 1222 || code === 1219 || code === 1216 || code === 1213 || code === 1210) {
     final = `
-  <div class="sky header">
+  <div class="sky ">
      <svg xmlns="http://www.w3.org/2000/svg"
         viewBox=" 0 0 640 512" width = "100px" height="100px" class="sloud-svg" stroke="black" fill = "white">
         <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
      </svg>
    </div>
-  <div class="rain skeleton"> 
+  <div class="rain"> 
     <span class="snow"  data-drops><i class="fa-regular fa-snowflake"></i></span>   
     <span class="snow"  data-drops> <i class="fa-regular fa-snowflake"></i></span> 
     <span class="snow"  data-drops> <i class="fa-regular fa-snowflake"></i></span>   
@@ -110,14 +110,14 @@ function chooseicon (code) {
      code === 1168 || code === 1153 || code === 1150 || code === 1195 || code === 1192 ||
      code === 1189 || code === 1186 || code === 1183) {
     final = ` 
-    <div class="sky header">
+    <div class="sky">
       <svg xmlns="http://www.w3.org/2000/svg"
           viewBox=" 0 0 640 512" width = "100px" height="100px" class="sloud-svg" stroke="black" fill = "white">
             <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
       </svg>
     </div>
 
-  <div class="rain skeleton"> 
+  <div class="rain"> 
     <span class="rain-drops"  data-drops></span>   
     <span class="rain-drops"  data-drops></span> 
     <span class="rain-drops"  data-drops></span>   
@@ -143,7 +143,7 @@ function chooseicon (code) {
   // sunny
   else if (code === 1000) {
     final = `
-      <div class="sky header sunny-day">
+      <div class="sky sunny-day">
       <svg xmlns="http://www.w3.org/2000/svg"
           viewBox=" 0 0 640 512" width = "100px" height="100px" class="sloud-svg" stroke="black" fill = "white">
           <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
@@ -154,9 +154,8 @@ function chooseicon (code) {
   }
   // partly cloudy
   else if (code === 1003) {
-    console.log('heyyyy')
     final = ` 
-  <div class="sky header__img skeleton">
+  <div class="sky">
       <svg xmlns="http://www.w3.org/2000/svg"
          viewBox=" 0 0 640 512" width = "100px" height="100px" class="loud-svg " stroke="black" fill = "white">
            <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
@@ -166,7 +165,7 @@ function chooseicon (code) {
           <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
         </svg>
     </div>
-    <div class="rain skeleton"> 
+    <div class="rain "> 
     <div class="sun partly-cloud"></div>
     </div>`
   }
@@ -189,7 +188,7 @@ function chooseicon (code) {
   // blizard
   else if (code === 1117 || code === 1114) {
     final = `
-    <div class="sky header__img skeleton">
+    <div class="sky">
     <svg xmlns="http://www.w3.org/2000/svg"
         viewBox=" 0 0 640 512" width = "100px" height="100px" class="sloud-svg" stroke="black" fill = "white">
         <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
@@ -200,7 +199,7 @@ function chooseicon (code) {
       <i class="fa-solid fa-wind"></i>
       <i class="fa-solid fa-wind"></i>
     </div>
- <div class="rain skeleton"> 
+ <div class="rain"> 
     <span class="snow"  data-drops><i class="fa-regular fa-snowflake"></i></span>   
     <span class="snow"  data-drops> <i class="fa-regular fa-snowflake"></i></span> 
     <span class="snow"  data-drops> <i class="fa-regular fa-snowflake"></i></span>   
@@ -225,13 +224,13 @@ function chooseicon (code) {
   // snow rain
   else if (code === 1087 || code === 1072 || code === 1069 || code === 1066) {
     final = ` 
-   <div class="sky header__img skeleton">
+   <div class="sky">
       <svg xmlns="http://www.w3.org/2000/svg"
         viewBox=" 0 0 640 512" width = "100px" height="100px" class="sloud-svg" stroke="black" fill = "white">
          <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
       </svg>
     </div>
-  <div class="rain skeleton"> 
+  <div class="rain"> 
     <span class="snow"  data-drops> <i class="fa-regular fa-snowflake"></i></span> 
     <span class="rain-drops"  data-drops></span>   
     <span class="rain-drops"  data-drops></span> 
@@ -261,7 +260,7 @@ function slidercard (obj, arr) {
     const code = obj.forecast.forecastday[i].day.condition.code
 
     const div = document.createElement('div')
-    const smallCard = `<div class="small-cards skeleton">
+    const smallCard = `<div class="small-cards ">
     <h1 class="day-name">${formatDate(new Date(obj.forecast.forecastday[i].date), 'EEEE')}</h1>
     <div>${chooseicon(code)}</div>
    <h2 class="temprature">${obj.forecast.forecastday[i].day.avgtemp_c}&deg;C</h2>
@@ -275,7 +274,7 @@ function slidercard (obj, arr) {
 }
 // function to validate form accept input,it's value,and dom elemnt to show error message
 const validate = (value, field, domEle) => {
-  const reg = /[0-9]/
+  const reg = /[0-9]/;
   if (value === null || value === '') {
     domEle.textContent = 'Please,enter city name.'
     field.className = 'invalid'
