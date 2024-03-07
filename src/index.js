@@ -8,16 +8,13 @@ const cardHolder = document.querySelector('[data-cards');
 const errMsg = document.querySelector('[data-err-msg]');
 const loaderPage = document.querySelector('[data-loader-page]');
 let shallow;
-
 submitBtn.addEventListener('click', (e) => {
   e.preventDefault()
   let cityName = input.value;
-
   if (validate(cityName, input, errMsg) === false) {
     return "can't find city name"
   } else if (validate(cityName, input, errMsg)) {
     const data = getforcast(cityName);
-
     data.then(response => {
       cardHolder.innerHTML = bigCard(response);
       samllCard.textContent = '';
@@ -54,7 +51,6 @@ changeUnit.addEventListener('click', () => {
   const tempratures = document.querySelectorAll('.temprature')
   const firstTemprature = document.querySelector('.first-temprature')
   const temprature = [...tempratures]
-
   if (changeUnit.checked === true) {
     shallow.then(response => {
       changeTemprature(temprature, firstTemprature, true, response);
