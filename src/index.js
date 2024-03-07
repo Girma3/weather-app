@@ -1,5 +1,4 @@
 import './style.css'
-import '@fortawesome/fontawesome-free/css/all.css'
 import { bigCard, focusStyle, getforcast, slidercard, validate, changeTemprature } from './weather.js'
 const input = document.querySelector('[data-city-input]');
 const submitBtn = document.querySelector('[data-submit-location]');
