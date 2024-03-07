@@ -2,7 +2,7 @@
 import { formatDate } from 'date-fns'
 // function to fetch weather data from weatherapi.com and  return promise
 async function getforcast (city) {
-  const forcast = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=436674fa18c0444fba4113519240203&q=${city}&days=3`, { mode: 'cors' })
+  const forcast = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=436674fa18c0444fba4113519240203&q=${city}&days=3`, { mode: 'cors' })
   if (forcast.status === 400) {
     throw new Error("can't fetch the data")
   }
