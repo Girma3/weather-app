@@ -4,7 +4,7 @@ module.exports = {
     commonjs: true,
     es2021: true
   },
-  extends: "standard", 
+  extends: 'standard',
   overrides: [
     {
       env: {
@@ -22,7 +22,8 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-    indent: "error",
-    semi:"always",
-   }
+    indent: 'error',
+    semi: 0
+
+  }
 }
