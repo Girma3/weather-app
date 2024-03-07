@@ -31,6 +31,7 @@ submitBtn.addEventListener('click', (e) => {
     })
       .catch(err => {
         errMsg.textContent = "can't find data,try another city"
+        console.log(err)
       })
   }
 })
